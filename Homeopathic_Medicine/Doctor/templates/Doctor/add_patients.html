@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Add Patient{% endblock title %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="container">
+    <br>
+<form method='POST'> {% csrf_token %}
+
+{% if result %}
+    <br>
+ <div class="card text-white bg-warning mb-12" >
+
+  <div class="card-body">
+    <h5 class="card-title">   {{result}}</h5>
+      </div>
+</div>
+     <br>
+{% endif %}
+         <div class="form-group">
+      {{ form }}
+              </div>
+      <button type='submit' class='btn btn-secondary'>Submit</button>
+    </form>
+
+</div>
+<br>
+{% else %}
+    {% include 'Doctor/error.html' %}
+ {% endif %}
+{% endblock %}

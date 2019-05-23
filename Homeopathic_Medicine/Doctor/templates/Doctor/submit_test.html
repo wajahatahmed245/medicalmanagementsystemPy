@@ -1,0 +1,420 @@
+{% extends "base.html" %}
+{% block title %}submit{% endblock title %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="container">
+    <br>
+<form method='POST' > {% csrf_token %}
+
+ <table class="table table-hover ">
+    <thead>
+      <tr>
+        <!--<th>Symptomps</th>-->
+        <th class="text-center" style="background-color:#ff7800"><h1 style="color:white">Symptoms</h1> </th>
+
+
+      </tr>
+    </thead>
+    <tbody id="myTable" style="background-color:light-grey">
+
+
+
+   <tr>
+<!--<td>-->
+   <!--<h4>head</h4>-->
+<!--</td>-->
+<td>
+    <h4>Head</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+    {% for i in head %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+
+  </label>
+</div>
+
+      <br></td>
+
+
+
+
+
+       <!---->
+<!--<td>{{obj.symptoms}}</td>-->
+       <!--<td>{{obj.created_at}}</td>-->
+
+   </tr>
+
+      <tr>
+<!--<td>-->
+   <!--<h4>head</h4>-->
+<!--</td>-->
+<td>
+    <h4>Stomach</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Stomach_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td>
+
+
+
+
+
+
+
+       <!---->
+<!--<td>{{obj.symptoms}}</td>-->
+       <!--<td>{{obj.created_at}}</td>-->
+
+   </tr>
+<tr>
+  <td>
+    <h4>Face</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Face_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+    <tr>
+  <td>
+    <h4>Anus Symptoms </h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Anus_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+     <tr>
+  <td>
+    <h4>Circulatory Organs </h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Circulatory_Organs_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+     <tr>
+  <td>
+    <h4>Nose  </h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Nose_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+       <tr>
+  <td>
+    <h4>Teeth</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Teeth_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+    <tr>
+  <td>
+    <h4>Limb</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in limb_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+    <tr>
+  <td>
+    <h4>Skin</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Skin_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+    <tr>
+  <td>
+    <h4>Mouth</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Mouth_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+
+    <tr>
+  <td>
+    <h4>Sexual Organ</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Sexual_Organ_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+    <tr>
+  <td>
+    <h4>Chest</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Chest_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+    <tr>
+  <td>
+    <h4>Appetite</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in appetite_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+     <tr>
+  <td>
+    <h4>Generalities</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Generalities_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+     <tr>
+  <td>
+    <h4>Female Sexual Organs</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Female_Sexual_Organs_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+    <tr>
+  <td>
+    <h4>Respiratory Organs</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Respiratory_Organs_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+
+    <tr>
+  <td>
+    <h4>Heart</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Heart_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+    <tr>
+  <td>
+    <h4>Back</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Back_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+    <tr>
+  <td>
+    <h4>Sleep</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Sleep_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+    <tr>
+  <td>
+    <h4>Mind</h4> <hr><div class="form-check">
+  <label class="form-check-label">
+   {% for i in Mind_symptoms_list %}
+
+         <input type="checkbox" class="form-check-input" value="{{i}}" name="{{i}}">{{i}}
+
+      <br>
+
+      {% endfor %}
+
+  </label>
+</div>
+
+      <br></td></tr>
+
+
+    </tbody>
+  </table>
+<!--<div class="form-group">-->
+  <!--<label for="comment">Can mention Extra medicines:</label>-->
+  <!--<textarea class="form-control" rows="5" id="comment"></textarea>-->
+<!--</div>-->
+
+      <button type='submit' class='btn btn-secondary'>Next</button>
+          <!--<button type='button' class='btn btn-secondary' onclick="location.href='{% url 'doctor:all_patients'  %}'">Back</button>-->
+
+    </form>
+
+</div>
+<br>
+{% else %}
+    {% include 'Doctor/error.html' %}
+ {% endif %}
+{% endblock %}

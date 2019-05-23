@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}All Patient{% endblock title %}
+{% block content %}
+ <!--<h2>Doctor Username = {{user}}</h2>-->
+  <!--<p>The .table-hover class enables a hover state (grey background on mouse over) on table rows:</p>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% if user.is_authenticated %}
+<!--<input  type="text" placeholder="Search..">-->
+<div class="card bg-info text-white">
+    <div class="card-body text-center"><i class="fa fa-address-book"></i> You can watch for your patients in database</div>
+  </div>
+<br>
+<br>
+
+<div class="container">
+	<div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class=""></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" id="myInput" placeholder="Search for Patient">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <!--<button class="btn btn-lg btn-success" type="submit">Search</button>-->
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
+                    </div>
+
+<br>
+<br>
+
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+          <th>Address</th>
+          <th>Cell No.</th>
+          <th>Edit Patient Data</th>
+          <th>Delete Patient Data</th>
+ <th>Examine</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+
+
+{% for obj in patient %}
+   <tr>
+<td>{{obj.first_name}}</td>
+<td>{{obj.last_name}}</td>
+<td>{{obj.email}}</td>
+<td>{{obj.address}}</td>
+<td>{{obj.phone_num}}</td>
+
+
+<td><button type="button" class="btn btn-primary active" onclick="location.href='{% url 'doctor:update_patient' id=obj.id %}'"> Edit</button></td>
+
+       <td><button type="submit"  class="btn btn-danger active"  onclick="location.href='{% url 'doctor:delete_patient' id=obj.id %}'" >Delete</button> <input type="hidden" id="delete" name="custId" value={{obj.id}}></td>
+
+
+       <td><button type="button" class="btn btn-info active" onclick="location.href='{% url 'doctor:examine' id=obj.id  %}'">Examine</button></td>
+
+       <!---->
+<!--<td>{{obj.symptoms}}</td>-->
+       <!--<td>{{obj.created_at}}</td>-->
+
+   </tr>
+{% endfor %}
+
+    </tbody>
+  </table>
+
+
+    </div>
+
+<br>
+<br>
+
+{% else %}
+    {% include 'Doctor/error.html' %}
+ {% endif %}
+
+
+{% endblock %}

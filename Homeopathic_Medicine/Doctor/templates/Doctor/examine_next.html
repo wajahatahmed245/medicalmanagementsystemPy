@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Examine{% endblock title %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <br>
+<form method='POST'> {% csrf_token %}
+
+     {% if success %}
+<div class="card">
+    <div class="card-body"><h4> <strong>{{success}}</strong>        <button type='button' onclick="printContent('printme');" class='btn btn-secondary'>Print</button> </h4>
+
+</div>
+  </div>
+
+
+     {% endif %}
+
+<br>
+    <br>
+    <div class="card" id="printme">
+    <div class="card-body" id="extraappend">
+      <h2 class="card-title text-primary"><strong>Information</strong></h2>
+
+      <h5> <strong>Name :</strong> {{name}}</h5>
+    <h5><strong>Phone Number :</strong> {{phone_num}}</h5>
+
+ <h5><strong>symptoms :</strong> {{symptoms}}</h5>
+         <h5><strong>Medicine :</strong> {{symptomsMedicine}}</h5>
+        {% if success %}
+        <h5><strong>More Medicines :</strong> {{extramedicine}}</h5>
+             {% endif %}
+    </div>
+  </div>
+    <br>
+
+
+
+
+<div class="form-group">
+  <label for="comment"><h2>Mention Extra medicines:</h2></label>
+  <textarea class="form-control" rows="5" name="extramedicine" id="comment" placeholder="If you dont want to add any extra medicine then leave it empty"></textarea>
+</div>
+
+      <button type='submit' class='btn btn-secondary'>Submit</button>
+      <!--<button type='button' class='btn btn-secondary' onclick="location.href='/examine/{{id}}'">Back</button>-->
+
+    </form>
+
+</div>
+<br>
+
+<script>
+function printContent(el){
+var restorepage = $('body').html();
+var printcontent = $('#' + el).clone();
+$('body').empty().html(printcontent);
+window.print();
+$('body').html(restorepage);
+}
+</script>
+{% else %}
+    {% include 'Doctor/error.html' %}
+ {% endif %}
+{% endblock %}

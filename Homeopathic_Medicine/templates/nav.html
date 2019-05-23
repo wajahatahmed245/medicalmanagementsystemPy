@@ -1,0 +1,68 @@
+{% url 'doctor:index' as main %}
+{% url 'doctor:all_patients' as AP %}
+{% url 'doctor:add_patients' as Adp %}
+{% url 'Patient_Appointment:appointment' as appntmnt_p %}
+{% url 'about' as abt %}
+{% url 'doctor_list' as doc_list %}
+
+
+<nav class="navbar py-4 navbar-expand-lg ftco_navbar navbar-light bg-light flex-row">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
+    			<div class="col-lg-2 pr-4 align-items-center">
+		    		<a class="navbar-brand" href="index.html">Dr.<span>care</span></a>
+	    		</div>
+	    		<div class="col-lg-10 d-none d-md-block">
+		    		<div class="row d-flex">
+			    		<div class="col-md-4 pr-4 d-flex topper align-items-center">
+			    			<div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-map"></span></div>
+						    <span class="text">Address: Comsats Lahore</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+						    <span class="text">Email: youremail@email.com</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+						    <span class="text">Phone: + Moiz Malik</span>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+    </nav>
+<hr>
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container d-flex align-items-center">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+            {% if not user.is_authenticated %}
+	      <p class="button-custom order-lg-last mb-0"><a href="{% url 'Patient_Appointment:appointment'  %}" class="btn btn-secondary py-2 px-3">Make An Appointment</a></p>
+	       {% else %}
+            	      <p class="button-custom order-lg-last mb-0"><a href="" class="btn btn-secondary py-2 px-3"> Welcome {{user}}</a></p>
+
+            {% endif %}
+            <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav mr-auto">
+	        	<li class="nav-item active"><a href="{% url 'doctor:index'  %}" class="nav-link pl-0"><button type="button" class="btn btn-{% if request.path == main %}primary{% else %}dark{% endif %}">Home</button></a></li>
+	        	<li class="nav-item"><a href="{% url 'about' %}" class="nav-link"><button type="button" class="btn btn-{% if request.path == abt %}primary{% else %}dark{% endif %}">About</button></a></li>
+              {% if not user.is_authenticated %}   	        	<li class="nav-item"><a href="{% url 'doctor_list' %}" class="nav-link"><button type="button" class="btn btn-{% if request.path == doc_list %}primary{% else %}dark{% endif %}">Doctors</button></a></li>
+{% endif %}
+	        	{% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'doctor:add_patients'  %}" class="nav-link"><button type="button" class="btn btn-{% if request.path == Adp %}primary{% else %}dark{% endif %}">Add Patients</button></a></a></li>
+	        	<li class="nav-item"><a href="{% url 'doctor:all_patients'  %}" class="nav-link"><button type="button" class="btn btn-{% if request.path == AP %}primary{% else %}dark{% endif %}">All Patients</button></a></a></li>
+	        	<li class="nav-item"><a href="pricing.html" class="nav-link"><button type="button" class="btn btn-dark">Appointments</button></a></a></li>
+
+	        	<li class="nav-item"><a href="{% url 'logout'%}?next={{request.path}}" class="nav-link"><button type="button" class="btn btn-success">logout</button></a></li>
+                {% else %}
+	        	<li class="nav-item"><a href="{% url 'login'%}?next={{request.path}}" class="nav-link"><button type="button" class="btn btn-success">Sign In</button></a></li>
+                <li class="nav-item"><a href="{% url 'doctor_signup'  %}" class="nav-link"><button type="button" class="btn btn-info">Sign Up</button></a></li>
+                   {% endif %}
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+<hr>
+    <!-- END nav -->

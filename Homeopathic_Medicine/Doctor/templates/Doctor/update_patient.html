@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Update{% endblock title %}
+{% block content %}
+ <!--<h2>Doctor Username = {{user}}</h2>-->
+  <!--<p>The .table-hover class enables a hover state (grey background on mouse over) on table rows:</p>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% if user.is_authenticated %}
+
+<div class="container">
+
+  <div class="card">
+      {% for obj in patient %}
+      <div class="card-header text-center"><h2>Update Patient Info </h2></div>
+    <div class="card-body">
+
+
+        <form action="{% url 'doctor:update_patient' id=obj.id %}" method="POST">{% csrf_token %}
+    <div class="form-group">
+      <label for="email">First Name:</label>
+      <input type="text" class="form-control" value="{{obj.first_name}}" id="email" placeholder="Enter First Name" name="first_name">
+    </div>
+             <div class="form-group">
+      <label for="email">Last Name:</label>
+      <input type="text" class="form-control" value="{{obj.last_name}}" id="email" placeholder="Enter First Name" name="Last_Name:">
+    </div>
+               <div class="form-group">
+      <label for="email">Address:</label>
+      <input type="text" class="form-control" value="{{obj.address}}" id="email" placeholder="Enter First Name" name="Address:">
+    </div>
+
+    <div class="form-group">
+      <label for="pwd">Phone Number:</label>
+      <input type="number" class="form-control" value="{{obj.phone_num}}" id="pwd" placeholder="Enter password" name="pswd">
+    </div>
+
+
+
+    </div>
+    <div class="card-footer"> <button type="submit" class="btn btn-secondary">Update</button> <button type="button" onclick="location.href='{% url 'doctor:all_patients'  %}'" class="btn btn-info" >Back</button></div>
+
+        </form>
+      {% endfor %}
+  </div>
+</div>
+
+<br>
+<br>
+{% else %}
+   {% include 'Doctor/error.html' %}
+
+ {% endif %}
+
+
+{% endblock %}
