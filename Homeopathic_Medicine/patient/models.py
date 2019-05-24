@@ -10,6 +10,7 @@ class Patient(models.Model):
     last_name = models.CharField(max_length=50)
     address = models.CharField(max_length=150)
     phone_num = models.IntegerField()
+    Gender = models.CharField(max_length=50,default='Male')
     email = models.EmailField(blank=True, default='NA')
     symptoms = models.CharField(max_length=100)
     medicine = models.CharField(max_length=100)

@@ -27,8 +27,8 @@ class Choice(models.Model):
 
 
 class Visit(models.Model):
-    doctor = models.ForeignKey(User, on_delete="models.CASCADE")
-    patient = models.ForeignKey(Patient, on_delete="models.CASCADE")
+    doctor = models.ForeignKey(User, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     symptoms = models.TextField(null=False, blank=True, default="NA")
     symptomsMedicine = models.TextField(null=False, blank=False, default="NA")
     extraMediceine = models.TextField(blank=True)
@@ -38,7 +38,7 @@ class Visit(models.Model):
 
 
 class Doctor_User(models.Model):
-    user = models.OneToOneField(User, on_delete="models.CASCADE")
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     clinic = models.CharField(max_length=50, null=False, blank=False, default="NA")
     gender = models.CharField(null=False, max_length=10, blank=False, default="NA")
 

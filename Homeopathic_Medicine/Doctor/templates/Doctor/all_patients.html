@@ -59,6 +59,7 @@ $(document).ready(function(){
         <th>Lastname</th>
         <th>Email</th>
           <th>Address</th>
+          <th>Gender</th>
           <th>Cell No.</th>
           <th>Edit Patient Data</th>
           <th>Delete Patient Data</th>
@@ -74,12 +75,14 @@ $(document).ready(function(){
 <td>{{obj.last_name}}</td>
 <td>{{obj.email}}</td>
 <td>{{obj.address}}</td>
+<td>{{obj.Gender}}</td>
+
 <td>{{obj.phone_num}}</td>
 
 
 <td><button type="button" class="btn btn-primary active" onclick="location.href='{% url 'doctor:update_patient' id=obj.id %}'"> Edit</button></td>
 
-       <td><button type="submit"  class="btn btn-danger active"  onclick="location.href='{% url 'doctor:delete_patient' id=obj.id %}'" >Delete</button> <input type="hidden" id="delete" name="custId" value={{obj.id}}></td>
+       <td><button type="submit"  class="btn btn-danger active"  onclick="location.href='/del_patients/{{obj.id}}'" >Delete</button> <input type="hidden" id="delete" name="custId" value={{obj.id}}></td>
 
 
        <td><button type="button" class="btn btn-info active" onclick="location.href='{% url 'doctor:examine' id=obj.id  %}'">Examine</button></td>

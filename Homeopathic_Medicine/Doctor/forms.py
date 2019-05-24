@@ -5,42 +5,39 @@ class PatientsManagement(forms.Form):
     first_name = forms.CharField(widget=forms.TextInput(
         attrs={
             "class": "form-control",
-            "placeholder": "Your Username"
+            "placeholder": "Your firstname"
         }
     ))
     last_name = forms.CharField(widget=forms.TextInput(
         attrs={
             "class": "form-control",
-            "placeholder": "Your Username"
+            "placeholder": "Your lastname"
         }
     ))
     address = forms.CharField(widget=forms.TextInput(
         attrs={
             "class": "form-control",
-            "placeholder": "Your Username"
+            "placeholder": "Your adress"
         }
     ))
     phone_num = forms.IntegerField(widget=forms.NumberInput(
         attrs={
             "class": "form-control",
-            "placeholder": "Your Username"
+            "placeholder": "Your number"
         }
     ))
     email = forms.EmailField(required=False, widget=forms.EmailInput(
         attrs={
             "class": "form-control",
-            "placeholder": "Your Username"
+            "placeholder": "Your Email"
         }
     ))
-    symptoms = forms.CharField(widget=forms.TextInput(
+
+    CHOICES = (('Female', 'Female'), ('Male', 'Male'),)
+    Gender= forms.ChoiceField(choices=CHOICES, widget=forms.Select(
         attrs={
             "class": "form-control",
-            "placeholder": "Your Username"
+            "placeholder": "Gender"
         }
     ))
-    medicine = forms.CharField(widget=forms.TextInput(
-        attrs={
-            "class": "form-control",
-            "placeholder": "Your Username"
-        }
-    ))
+

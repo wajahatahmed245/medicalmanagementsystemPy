@@ -34,15 +34,13 @@ def add_patients(request):
         address = form.cleaned_data.get("address")
         last_name = form.cleaned_data.get("last_name")
         phone_num = form.cleaned_data.get("phone_num")
-        symptoms = form.cleaned_data.get("symptoms")
-        medicine = form.cleaned_data.get("medicine")
         email = form.cleaned_data.get("email")
+        Gender = form.cleaned_data.get("Gender")
 
         done = {'result': "patient is added"}
         context.update(done)
         patient_data = Patient(first_name=first_name, last_name=last_name, address=address, phone_num=phone_num,
-                               email=email,
-                               symptoms=symptoms, medicine=medicine)
+                               email=email,Gender=Gender)
         patient_data.save()
         doctor_id = 0
         doctor = User.objects.filter(id=request.user.id)
@@ -68,7 +66,7 @@ def all_patients(request):
     return render(request, 'Doctor/all_patients.html', context)
 
 
-@csrf_exempt
+
 def delete_patients(request, id):
     # if request.method == 'POST':
     # get_value = request.body.decode('utf-8')
@@ -92,6 +90,11 @@ def update_patient(request, id):
         print(request.POST.get('pswd'))
         update_patient_key = Patient.objects.get(id=id)
         update_patient_key.phone_num = request.POST.get('pswd')
+        update_patient_key.address = request.POST.get('Address')
+        update_patient_key.last_name = request.POST.get('Last_Name')
+        update_patient_key.first_name = request.POST.get('first_name')
+        update_patient_key.Gender = request.POST.get('gender')
+
         update_patient_key.save()
         return redirect("/all_patients/")
     patient_update = Patient.objects.filter(id=id)
