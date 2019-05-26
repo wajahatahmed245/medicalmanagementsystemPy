@@ -31,10 +31,10 @@ def sign_up(request):
             user.first_name = firstname
             user.last_name = lastname
             user.is_active = False
-            user.doctor_user.clinic=clinicname
-            user.doctor_user.gender=sellist1
+            user.doctor_user.clinic = clinicname
+            user.doctor_user.gender = sellist1
             user.save()
-            context.update({"requestSend":"Your request is submitted our team will notify you soon"})
+            context.update({"requestSend": "Your request is submitted our team will notify you soon"})
         except IntegrityError as e:
             if 'UNIQUE constraint':
                 context.update({"error": "Username Already is there try new one"})
@@ -48,6 +48,7 @@ def index(request):
 
     return render(request, "ii.html")
 
+
 def about(request):
     # Create user and save to the database
 
@@ -56,5 +57,9 @@ def about(request):
 
 def Doctor(request):
     # Create user and save to the database
+    context = {
+        'doctors': DP.objects.all(),
+        'female':'Female'
+    }
 
-    return render(request, "doctors_list.html")
+    return render(request, "doctors_list.html", context)

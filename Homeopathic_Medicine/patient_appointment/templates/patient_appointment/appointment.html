@@ -9,17 +9,17 @@
     		<div class="row">
     			<div class="col-md-6 py-5 pr-md-5">
 	          <div class="heading-section heading-section-white ftco-animate mb-5">
-	          	<span class="subheading">Consultation</span>
+	          	<span class="subheading">Appointments</span>
 	            <h2 class="mb-4">Free Consultation</h2>
 	            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 	          </div>
 	          <form action="#" class="appointment-form ftco-animate">
 	    				<div class="d-md-flex">
 		    				<div class="form-group">
-		    					<input type="text" class="form-control" placeholder="First Name">
+		    					<input type="text" class="form-control" placeholder="First Name" name="firstname">
 		    				</div>
 		    				<div class="form-group ml-md-4">
-		    					<input type="text" class="form-control" placeholder="Last Name">
+		    					<input type="text" class="form-control" placeholder="Last Name" name="lastname">
 		    				</div>
 	    				</div>
 	    				<div class="d-md-flex">
@@ -28,37 +28,37 @@
           					<div class="select-wrap">
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                       <select name="" id="" class="form-control">
-                      	<option value="">Select Your Services</option>
-                        <option value="">Neurology</option>
-                        <option value="">Cardiology</option>
-                        <option value="">Dental</option>
-                        <option value="">Ophthalmology</option>
-                        <option value="">Other Services</option>
+                      	<option value="Not Mentioned">Select Your Gender</option>
+                        <option style="color:black" value="Male">Male</option>
+                        <option style="color:black" value="Female">Female</option>
                       </select>
                     </div>
 		              </div>
 		    				</div>
 	    					<div class="form-group ml-md-4">
-		    					<input type="text" class="form-control" placeholder="Phone">
+		    					<input type="number" class="form-control" placeholder="Phone" name="Phone">
 		    				</div>
+
 	    				</div>
+
 	    				<div class="d-md-flex">
 		    				<div class="form-group">
-		    					<div class="input-wrap">
-		            		<div class="icon"><span class="ion-md-calendar"></span></div>
-		            		<input type="text" class="form-control appointment_date" placeholder="Date">
-	            		</div>
+		    					<div class="form-group ml-md-12">
+		    					<input type="email" class="form-control" placeholder="email" name="email">
 		    				</div>
-		    				<div class="form-group ml-md-4">
-		    					<div class="input-wrap">
-		            		<div class="icon"><span class="ion-ios-clock"></span></div>
-		            		<input type="text" class="form-control appointment_time" placeholder="Time">
-	            		</div>
 		    				</div>
+
+
+
 	    				</div>
+				  	<div class="form-group">
+		    					<div class="form-group ml-md-12">
+		    					<input type="Address" class="form-control" placeholder="Address" name="Address">
+		    				</div>
+		    				</div>
 	    				<div class="d-md-flex">
 	    					<div class="form-group">
-		              <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
+		              <textarea name="msg" id="" cols="30" rows="2" class="form-control" placeholder="Message" ></textarea>
 		            </div>
 		            <div class="form-group ml-md-4">
 		              <input type="submit" value="Appointment" class="btn btn-secondary py-3 px-4">

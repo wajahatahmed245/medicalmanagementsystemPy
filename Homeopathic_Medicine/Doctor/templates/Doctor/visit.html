@@ -25,7 +25,8 @@
 
         <hr>
       <h4 class="card-title text-capitalize">{{obj.patient.first_name}} {{obj.patient.last_name}}</h4>
-
+      <a href="#" class="btn btn-primary">{{obj.patient.Gender}}</a>
+<hr>
         <p><strong>Phone Number : </strong> {{obj.patient.phone_num}}</p>
         <p class="card-text"><strong>Symptoms : </strong>{{obj.symptoms}}  <p><strong>Symptoms Medicine : </strong> {{obj.symptomsMedicine}}</p>
         {% if obj.extraMediceine %}
@@ -33,8 +34,9 @@
         {% else %}
          <p><strong>More Medicine : </strong> Not recommended</p>
         {%endif%}
+              <span class="badge badge-info"><i class="fa fa-calendar"></i><strong>&nbsp&nbspTime Date : </strong> {{obj.created_at}}</span>
+
         </p>
-      <a href="#" class="btn btn-primary">{{obj.patient.Gender}}</a>
     </div>
   </div>
         </div>

@@ -5,7 +5,7 @@ app_name = 'Patient_Appointment'
 
 urlpatterns = [
 
-    path('appointment/', views.index, name='appointment'),
+    path('appointment/<int:id>/', views.index, name='appointment'),
 
 
 ]

@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from patient.models import Patient
+import django.utils.timezone as timezone
+
 
 
 class MyUser(AbstractBaseUser):
@@ -32,6 +34,7 @@ class Visit(models.Model):
     symptoms = models.TextField(null=False, blank=True, default="NA")
     symptomsMedicine = models.TextField(null=False, blank=False, default="NA")
     extraMediceine = models.TextField(blank=True, default="Not Recomended")
+    created_at = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
         return ('{} {}').format(self.patient.first_name, self.patient.last_name)

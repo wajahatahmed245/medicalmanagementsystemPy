@@ -5,6 +5,7 @@
     <title>{% block title %}{% endblock title %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  {% include 'css_page.html' %}
   </head>
   <body>
@@ -116,6 +117,10 @@
 
   <!-- loader -->
   {% include 'js_page.html' %}
-
+<script>
+$(document).ready(function(){
+  $('.toast').toast('show');
+});
+</script>
   </body>
 </html>
