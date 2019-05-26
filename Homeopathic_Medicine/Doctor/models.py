@@ -31,7 +31,7 @@ class Visit(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     symptoms = models.TextField(null=False, blank=True, default="NA")
     symptomsMedicine = models.TextField(null=False, blank=False, default="NA")
-    extraMediceine = models.TextField(blank=True)
+    extraMediceine = models.TextField(blank=True, default="Not Recomended")
 
     def __str__(self):
         return ('{} {}').format(self.patient.first_name, self.patient.last_name)

@@ -40,7 +40,7 @@ def add_patients(request):
         done = {'result': "patient is added"}
         context.update(done)
         patient_data = Patient(first_name=first_name, last_name=last_name, address=address, phone_num=phone_num,
-                               email=email,Gender=Gender)
+                               email=email, Gender=Gender)
         patient_data.save()
         doctor_id = 0
         doctor = User.objects.filter(id=request.user.id)
@@ -66,7 +66,6 @@ def all_patients(request):
     return render(request, 'Doctor/all_patients.html', context)
 
 
-
 def delete_patients(request, id):
     # if request.method == 'POST':
     # get_value = request.body.decode('utf-8')
@@ -82,6 +81,26 @@ def delete_patients(request, id):
     # print("the id is {} ".format(id))
 
     return render(request, 'Doctor/all_patients.html')
+
+
+def visits(request):
+    # if request.method == 'POST':
+    # get_value = request.body.decode('utf-8')
+
+    # print("get value is = {} ".format(get_value))
+    #
+    # # print(content)
+    # id = int(get_value[3:5])
+    # # print()
+    visited_pattients = Visit.objects.all().order_by('-id')
+    context = {
+        'patients': visited_pattients,
+        'Male':'Male',
+
+    }
+    # print("the id is {} ".format(id))
+
+    return render(request, 'Doctor/visit.html', context)
 
 
 def update_patient(request, id):
@@ -177,13 +196,13 @@ def next_examine(request, id):
         'symptoms': Visited_patient.symptoms,
         'symptomsMedicine': Visited_patient.symptomsMedicine,
 
-
     }
     if request.method == 'POST':
         print('extramedicine : ', type(request.POST.get('extramedicine')))
         Visited_patient.extraMediceine = request.POST.get('extramedicine')
         Visited_patient.save()
-        context.update({'success':'Extra Medicine is added Click on print to for receipt', 'extramedicine':Visited_patient.extraMediceine})
+        context.update({'success': 'Extra Medicine is added Click on print to for receipt',
+                        'extramedicine': Visited_patient.extraMediceine})
 
     return render(request, 'Doctor/examine_next.html', context)
 
