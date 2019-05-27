@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from patient.models import Patient
 from .forms import PatientsManagement
 import request
+from patient_appointment.models import Appointments
 from django.contrib.auth.models import User
 # from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.csrf import csrf_exempt
@@ -95,12 +96,33 @@ def visits(request):
     visited_pattients = Visit.objects.all().order_by('-id')
     context = {
         'patients': visited_pattients,
-        'Male':'Male',
+        'Male': 'Male',
 
     }
     # print("the id is {} ".format(id))
 
     return render(request, 'Doctor/visit.html', context)
+
+
+def appointments_patients(request):
+    # if request.method == 'POST':
+    # get_value = request.body.decode('utf-8')
+
+    # print("get value is = {} ".format(get_value))
+    #
+    # # print(content)
+    # id = int(get_value[3:5])
+    # # print()
+    id = request.user.id
+    appointments = Appointments.objects.filter(doctor_id=id)
+    context = {
+        'appointments': appointments,
+        'Male':'Male'
+
+    }
+    # print("the id is {} ".format(id))
+
+    return render(request, 'Doctor/appointments.html', context)
 
 
 def update_patient(request, id):

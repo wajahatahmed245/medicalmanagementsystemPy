@@ -54,7 +54,8 @@
 </div>
 <br>
 {% else %}
-<h1>Not allowed</h1>
+	        	<li class="nav-item"><a href="{% url 'doctor:all_patients'  %}" class="nav-link"><button type="button" class="btn btn-primary">Click Here</button></a></a></li>
+
  {% endif %}
 
 {% endblock %}

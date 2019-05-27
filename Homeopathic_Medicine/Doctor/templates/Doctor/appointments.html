@@ -1,11 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Visits{% endblock title %}
+{% block title %}appointment{% endblock title %}
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="container">
-    <br>
-    <script>
+<script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
@@ -37,18 +35,22 @@ $(document).ready(function(){
                         </div>
                         <!--end of col-->
                     </div>
+<div class="container">
+    <br>
 
     <div class="row">
 
-        {% for obj in patients %}
+    {% if appointments %}
+
+        {% for obj in appointments %}
 
     <!--<p></p>-->
       <!--<p>{{obj.symptoms}}</p>-->
     <!--<p></p>-->
         <div class='col-sm-4 mt-5'>
 <div class="card" >
-    <div class="card-body myTable">
-        {% if obj.patient.Gender == Male %}
+    <div class="card-body myTable" >
+        {% if obj.Gender == Male %}
                <img class="card-img-bottom" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
 {% else %}
                        <img class="card-img-bottom" src="https://www.w3schools.com/bootstrap4/img_avatar5.png" alt="Card image" style="width:100%">
@@ -56,23 +58,32 @@ $(document).ready(function(){
 {% endif %}
 
         <hr>
-      <h4 class="card-title text-capitalize">{{obj.patient.first_name}} {{obj.patient.last_name}}</h4>
-      <a href="#" class="btn btn-primary">{{obj.patient.Gender}}</a>
+      <h4 class="card-title text-capitalize">{{obj.first_name}} {{obj.last_name}}</h4>
+      <a href="#" class="btn btn-primary">{{obj.Gender}}</a>
 <hr>
-        <p><strong>Phone Number : </strong> {{obj.patient.phone_num}}</p>
-        <p class="card-text"><strong>Symptoms : </strong>{{obj.symptoms}}  <p><strong>Symptoms Medicine : </strong> {{obj.symptomsMedicine}}</p>
-        {% if obj.extraMediceine %}
-         <p><strong>More Medicine : </strong> {{obj.extraMediceine}}</p>
-        {% else %}
-         <p><strong>More Medicine : </strong> Not recommended</p>
+        <p><strong>Phone Number : </strong> {{obj.phone_num}}</p>
+        <p class="card-text"><strong>Email : </strong>{{obj.email}}  <p><strong>Message : </strong> {{obj.Msg}}</p>
+        {% if obj.address %}
+         <p><strong>Address: </strong> {{obj.address}}</p>
+
         {%endif%}
-              <span class="badge badge-info"><i class="fa fa-calendar"></i><strong>&nbsp&nbspTime Date : </strong> {{obj.created_at}}</span>
 
         </p>
     </div>
   </div>
         </div>
     {% endfor %}
+        {% else %}
+        <br>
+ <div class="card text-white bg-warning mb-12" >
+
+  <div class="card-body">
+    <h5 class="card-title">   No Appointments</h5>
+      </div>
+</div>
+     <br>
+           {%endif%}
+
 </div>
 
 
