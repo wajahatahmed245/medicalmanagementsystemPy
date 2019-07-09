@@ -1,8 +1,9 @@
+import datetime
 import json
 from django.http import HttpResponse
 from django.utils import timezone
 from django.shortcuts import render, redirect
-from patient.models import Patient
+from patient.models import Patient, PatientAppointment
 from .forms import PatientsManagement
 import request
 from patient_appointment.models import Appointments
@@ -21,6 +22,23 @@ from .machinelearning import predict_medicine
 
 def index(request):
     return render(request, 'Doctor/ii.html')
+
+def Add_to_patients(request,id):
+
+    return render(request, 'Doctor/ii.html')
+
+def appointment_table(request):
+    doctor_id = 0
+    doctor = User.objects.filter(id=request.user.id)
+    for i in doctor:
+        doctor_id = i.id
+    print(doctor_id)
+    patient = PatientAppointment.objects.filter(user=doctor_id).order_by('-id')
+    context = {
+        'patient': patient
+    }
+
+    return render(request, 'Doctor/appointments_table.html', context)
 
 
 def add_patients(request):
@@ -104,6 +122,56 @@ def visits(request):
     return render(request, 'Doctor/visit.html', context)
 
 
+def Appointment_form(request):
+    context = {
+        # 'appointments': appointments,
+        'Male': 'Male'
+
+    }
+
+    if request.method == 'POST':
+        context.update({'done': 'Accepted'})
+        print("request was = ", request.POST.get('schedule'))
+        first_name = request.POST.get("first_name")
+        address = request.POST.get("address")
+        last_name = request.POST.get("last_name")
+        phone_num = request.POST.get("phone_num")
+        email = request.POST.get("email")
+        Gender = request.POST.get("Gender")
+
+        # print('hello')
+        # x = datetime.datetime()
+        print(type(request.POST.get('schedule')))
+        date = request.POST.get('schedule')
+        date_in = request.POST.get('schedule')
+        patient_data = PatientAppointment(first_name=first_name, last_name=last_name, address=address,
+                                          phone_num=phone_num,
+                                          email=email, Gender=Gender, Datetime=date)
+        patient_data.save()
+        doctor_id = 0
+        doctor = User.objects.filter(id=request.user.id)
+        for i in doctor:
+            doctor_id = i.id
+        patient_data.user.add(doctor_id)
+        date_out = datetime.datetime(*[int(v) for v in date_in.replace('T', '-').replace(':', '-').split('-')])
+        print(date_out)
+    # if request.method == 'POST':
+    # get_value = request.body.decode('utf-8')
+
+    # print("get value is = {} ".format(get_value))
+    #
+    # # print(content)
+    # id = int(get_value[3:5])
+    # # print()
+    print('hello')
+    # id = request.user.id
+    # appointments = Appointments.objects.filter(doctor_id=id)
+
+    # print("the id is {} ".format(id))
+
+    return render(request, 'Doctor/appontment_form.html', context)
+
+
 def appointments_patients(request):
     # if request.method == 'POST':
     # get_value = request.body.decode('utf-8')
@@ -117,7 +185,7 @@ def appointments_patients(request):
     appointments = Appointments.objects.filter(doctor_id=id)
     context = {
         'appointments': appointments,
-        'Male':'Male'
+        'Male': 'Male'
 
     }
     # print("the id is {} ".format(id))

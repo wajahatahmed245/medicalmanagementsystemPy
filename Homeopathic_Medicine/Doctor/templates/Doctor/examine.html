@@ -2,6 +2,25 @@
 {% block title %}submit{% endblock title %}
 {% block content %}
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+    <script>
+$(document).ready(function(){
+
+  $("#myInput").on("keyup", function() {
+
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr td").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 {% if user.is_authenticated %}
 <div class="container">
     <br>
@@ -11,8 +30,31 @@
 </div>
   </div>
 
+
     <br>
      {% endif %}
+    <br>
+    <div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class=""></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" id="myInput" placeholder="Search for Patient">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <!--<button class="btn btn-lg btn-success" type="submit">Search</button>-->
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
+                    </div>
     <br>
 <form method='POST' > {% csrf_token %}
 
@@ -424,6 +466,7 @@
 
 </div>
 <br>
+
 {% else %}
     {% include 'Doctor/error.html' %}
  {% endif %}

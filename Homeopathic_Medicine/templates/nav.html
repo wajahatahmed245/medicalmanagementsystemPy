@@ -56,6 +56,7 @@
                 <li class="nav-item"><a href="{% url 'doctor:add_patients'  %}" class="nav-link"><button type="button" class="btn btn-{% if request.path == Adp %}primary{% else %}dark{% endif %}">Add Patients</button></a></a></li>
 	        	<li class="nav-item"><a href="{% url 'doctor:all_patients'  %}" class="nav-link"><button type="button" class="btn btn-{% if request.path == AP %}primary{% else %}dark{% endif %}">All Patients</button></a></a></li>
 	        	<li class="nav-item"><a href="{% url 'doctor:appointmments'  %}" class="nav-link"><button type="button" class="btn btn-{% if request.path == appointmments %}primary{% else %}dark{% endif %}">Appointments</button></a></a></li>
+
 	        	<li class="nav-item"><a href="{% url 'doctor:visits'  %}" class="nav-link"><button type="button" class="btn btn-{% if request.path == visits %}primary{% else %}dark{% endif %}">Visits</button></a></a></li>
 
 	        	<li class="nav-item"><a href="{% url 'logout'%}?next={{request.path}}" class="nav-link"><button type="button" class="btn btn-success">logout</button></a></li>

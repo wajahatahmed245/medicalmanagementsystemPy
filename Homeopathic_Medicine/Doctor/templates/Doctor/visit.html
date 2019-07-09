@@ -1,42 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Visits{% endblock title %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-{% if user.is_authenticated %}
-<div class="container">
-    <br>
-    <script>
+ <script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $(".myTable h4").filter(function() {
+    $("#mytable #names").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
 });
 </script>
+
+{% if user.is_authenticated %}
+<div class="container">
+    <br>
+
 <br>
-	<div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <form class="card card-sm">
-                                <div class="card-body row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <i class=""></i>
-                                    </div>
-                                    <!--end of col-->
-                                    <div class="col">
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" id="myInput" placeholder="Search for Patient">
-                                    </div>
-                                    <!--end of col-->
-                                    <div class="col-auto">
-                                        <!--<button class="btn btn-lg btn-success" type="submit">Search</button>-->
-                                    </div>
-                                    <!--end of col-->
-                                </div>
-                            </form>
-                        </div>
-                        <!--end of col-->
-                    </div>
+
 
     <div class="row">
 
@@ -47,7 +31,7 @@ $(document).ready(function(){
     <!--<p></p>-->
         <div class='col-sm-4 mt-5'>
 <div class="card" >
-    <div class="card-body myTable">
+    <div class="card-body" id="mytable">
         {% if obj.patient.Gender == Male %}
                <img class="card-img-bottom" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
 {% else %}
@@ -56,7 +40,7 @@ $(document).ready(function(){
 {% endif %}
 
         <hr>
-      <h4 class="card-title text-capitalize">{{obj.patient.first_name}} {{obj.patient.last_name}}</h4>
+      <h4 class="card-title text-capitalize" id="names" >{{obj.patient.first_name}} {{obj.patient.last_name}}</h4>
       <a href="#" class="btn btn-primary">{{obj.patient.Gender}}</a>
 <hr>
         <p><strong>Phone Number : </strong> {{obj.patient.phone_num}}</p>
